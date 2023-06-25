@@ -78,10 +78,10 @@ func perlin(indices []int) float64 {
 
 // -Internal----------------------------------------------------------------
 
-func PerlinNoise(opts *NoiseOptions) (*[]float64, error) {
+func PerlinNoise(opts *NoiseOptions, dim ...int) (*[]float64, error) {
 	size := 1
-	for i := range *opts.Dimensions {
-		size *= (*opts.Dimensions)[i]
+	for i := range dim {
+		size *= dim[i]
 	}
 	noise := make([]float64, size)
 
@@ -89,12 +89,12 @@ func PerlinNoise(opts *NoiseOptions) (*[]float64, error) {
 
 	for i := range noise {
 		i0 := i
-		n := len(*opts.Dimensions)
+		n := len(dim)
 		coords = make([]int, n)
 
 		for j := n - 1; j >= 0; j-- {
-			coords[j] = i0 % (*opts.Dimensions)[j]
-			i0 /= (*opts.Dimensions)[j]
+			coords[j] = i0 % dim[j]
+			i0 /= dim[j]
 		}
 
 		noise[i] = perlin(coords)

@@ -8,7 +8,7 @@ import (
 
 func TestPerlin(t *testing.T) {
 	opts := &n.NoiseOptions{
-		Dimensions: &[]int{8, 3},
+		Dimensions: n.NewDimensions(8, 8),
 		Amplitude:  255,
 		Zero:       0,
 		Seed:       0,

@@ -1,33 +1,28 @@
 package main
 
-import (
-	"log"
-
-	n "github.com/jonasiwnl/noise"
-)
+import n "github.com/jonasiwnl/noise"
 
 func main() {
-	dims := []int{8, 8}
-
 	opts := &n.NoiseOptions{
-		Dimensions: &dims,
-		Amplitude:  255,
-		Zero:       0,
-		Seed:       0,
+		Amplitude: 5,
+		Zero:      0,
+		Seed:      0,
 	}
 
-	noise, err := n.PerlinNoise(opts)
+	x := 8
+	y := 8
+	z := 8
 
-	if err != nil {
-		log.Fatal(err)
-	}
+	noise := n.RandomNoise3(opts, x, y, z)
 
 	for i := range *noise {
-		if i%dims[0] == 0 {
+		for j := range (*noise)[i] {
+			for p := range (*noise)[i][j] {
+				print((*noise)[i][j][p], " ")
+			}
 			print("\n")
 		}
-
-		print(int((*noise)[i]), " ")
+		print("\n\n")
 	}
 
 	print("\n\n")
