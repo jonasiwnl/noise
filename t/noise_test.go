@@ -8,13 +8,12 @@ import (
 
 func TestPerlin(t *testing.T) {
 	opts := &n.NoiseOptions{
-		Dimensions: n.NewDimensions(8, 8),
-		Amplitude:  255,
-		Zero:       0,
-		Seed:       0,
+		Amplitude: 255,
+		Zero:      0,
+		Seed:      0,
 	}
 
-	data, err := n.PerlinNoise(opts)
+	data, err := n.PerlinNoise(opts, 8, 8)
 	if err != nil {
 		t.Error(err)
 	}
